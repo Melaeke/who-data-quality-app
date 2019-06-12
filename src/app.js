@@ -66,16 +66,15 @@ var app = angular.module("dataQualityApp",
 /**Bootstrap*/
 angular.element(document).ready(
 	function() {
-		var initInjector = angular.injector(["ng"]);
-		var $http = initInjector.get("$http");
 
-		$http.get("manifest.webapp").then(
+		fetch("manifest.webapp").then(
 			function(response) {
+
+				const json = response.json();
 
 				//Not production => rely on webpack-dev-server proxy
 				// eslint-disable-next-line no-undef
-				const baseUrl = process.env.NODE_ENV === "production" ?
-					response.data.activities.dhis.href : "";
+				const baseUrl = process.env.NODE_ENV === "production" ? json.activities.dhis.href : "";
 				app.constant("BASE_URL", baseUrl);
 				app.constant("API_VERSION", "29");
 				angular.bootstrap(document, ["dataQualityApp"]);
@@ -183,12 +182,18 @@ app.controller("NavigationController",
 		}]);
 
 
-app.run(["BASE_URL", "$http", function(BASE_URL, $http) {
-	console.log("Requesting profile");
-	$http.get( BASE_URL + "/api/me/profile.json").then(function (response) {
-		console.log("Got profile: ", response);
-		if (response.data && response.data.settings && response.data.settings.keyUiLocale) {
-			i18next.changeLanguage(response.data.settings.keyUiLocale);
+app.run(["BASE_URL", async function(BASE_URL) {
+	const settings = await getUserSettings(BASE_URL);
+	i18next.changeLanguage(settings.keyUiLocale);
+}]);
+
+const getUserSettings = (baseUrl) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const response = await fetch(`${baseUrl}/api/userSettings.json`);
+			resolve(response.json());
+		} catch ( err ) {
+			reject(err);
 		}
 	});
-}]);
+};

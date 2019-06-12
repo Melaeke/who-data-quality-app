@@ -6,81 +6,167 @@
  immunities enjoyed by WHO under national or international law or submit to any national court jurisdiction.
  */
 
-export default function (BASE_URL, API_VERSION, $http, $q, notificationService, $i18next) {
+export default function (BASE_URL, API_VERSION, $q) {
 
 	var self = this;
 
 	self.getMultiple = function(requestURLs) {
 
-		var promises = requestURLs.map(function(request) {
-
-			//Cache analytics requests
-			var cache = false;
-			//				if (request.indexOf("api/analytics") > -1); cache = true;
+		var promises = requestURLs.map(async function(request) {
 
 			var fullURL = BASE_URL + "/api/" + API_VERSION + request;
 			fullURL = encodeURI(fullURL);
-			return $http.get(fullURL, {"cache": cache});
+
+			const def = $q.defer();
+
+			try {
+				const response = await fetch(fullURL);
+				if ( response.ok ) {
+					const json = await response.json();
+					def.resolve(json);
+				} else {
+					def.reject(null);
+				}
+			} catch ( err ) {
+				def.reject(err);
+			}
+
+			return def.promise;
 		});
 
 		return $q.all(promises);
 	};
 
-	self.getSingle = function(requestURL) {
+	self.getSingle = async function(requestURL) {
+		console.log("getSingle");
 
-
-		//Cache analytics requests
-		var cache = false;
-		//			if (requestURL.indexOf("api/analytics") > -1); cache = true;
-		
 		var fullURL = BASE_URL + "/api/" + API_VERSION + requestURL;
 		fullURL = encodeURI(fullURL);
-		return $http.get(fullURL, {"cache": cache});
+
+		var deferred = $q.defer();
+
+		try {
+			const response = await fetch(fullURL);
+
+			if ( response.ok ) {
+				const json = await response.json();
+				deferred.resolve({data: json, status: response.status, config: {url: fullURL}});
+			} else {
+				deferred.reject(null);
+			}
+		} catch ( err ) {
+			deferred.reject(err);
+		}
+
+		return deferred.promise;
 	};
 
 
-	self.getSingleData = function(requestURL) {
-		var deferred = $q.defer();
+	self.getSingleData = async function(requestURL) {
 
-		//Cache analytics requests
-		var cache = false;
-		//if (requestURL.indexOf("api/analytics") > -1); cache = true;
+		var deferred = $q.defer();
 
 		var fullURL = BASE_URL + "/api/" + API_VERSION + requestURL;
 		fullURL = encodeURI(fullURL);
-		$http.get(fullURL, {"cache": cache}).then(function(response) {
-			if (self.validResponse(response)) {
-				deferred.resolve(response.data);
+
+		try { 
+			const response = await fetch(fullURL);
+
+			if ( response.ok ) {
+				const json = response.json();
+				deferred.resolve(json);
+			} else {
+				deferred.reject(null);
 			}
-			else {
-				deferred.resolve(null);
-			}
-		},
-		function(error) {
-			deferred.reject(error);
-		});
+		} catch ( err ) {
+			deferred.reject(err);
+		}
 
 		return deferred.promise;
 	};
 
 
 
-	self.getSingleLocal = function(requestURL) {
-		requestURL = encodeURI(requestURL);
-		return $http.get(requestURL);
+	self.getSingleLocal = async function(requestURL) {
+		
+		const def = $q.defer();
+
+		try {
+			const response = await fetch(encodeURI(requestURL));
+			if ( response.ok ) {
+				const json = response.json();
+				def.resolve(json);
+			} else {
+				def.reject(null);
+			}
+		} catch ( err ) {
+			def.reject(err);
+		}
+		
+		return def.promise;
 	};
 
 
-	self.post = function(postURL, data) {
+	self.post = async function (postURL, data) {
 		var fullURL = BASE_URL + "/api/" + API_VERSION + postURL;
 		fullURL = encodeURI(fullURL);
-		return $http.post(fullURL, data);
+
+		const def = $q.defer();
+
+		try {
+			const response = await fetch(fullURL, {
+				method: "POST",
+				headers: {
+					"Accept": "application/json",
+					"Content-Type": "application/json"
+				},
+				credentials: "include",
+				body: data
+			});
+
+			if ( response.ok ) {
+				const json = await response.json();
+				def.resolve(json);
+			} else {
+				def.reject(null);
+			}
+
+		} catch ( err ) { 
+			def.reject(err);
+		}
+
+		return def.promise;
 	};
 
-	self.put = function(postURL, data) {
+	self.put = async function(postURL, data) {
 		var fullURL = BASE_URL + "/api/" + API_VERSION + postURL;
 		fullURL = encodeURI(fullURL);
-		return $http.put(fullURL, data);
+
+		const def = $q.defer();
+
+		try {
+			const response = await fetch(fullURL, {
+				method: "PUT",
+				headers: {
+					"Accept": "application/json",
+					"Content-Type": "application/json"
+				},
+				credentials: "include",
+				body: data
+			});
+
+			if ( response.ok ) {
+				const json = await response.json();
+				def.resolve(json);
+			} else {
+				def.reject(null);
+			}
+
+		} catch ( err ) { 
+			def.reject(err);
+		}
+
+		return def.promise;
 	};
 
 	self.validResponse = function(response) {
@@ -108,9 +194,7 @@ export default function (BASE_URL, API_VERSION, $http, $q, notificationService, 
 
 			else if (status === 302 && typeof(response.data) === "string" && response.data.indexOf("class=\"loginPage\"") >= 0) {
 				console.log("User has been logged out");
-				notificationService.notify("test", "test").then(function() {
-					window.location = BASE_URL + "/dhis-web-dashboard-integration/index.action";
-				});
+				window.location = BASE_URL + "/dhis-web-dashboard-integration/index.action";
 			}
 
 			//Unknown error
@@ -121,9 +205,7 @@ export default function (BASE_URL, API_VERSION, $http, $q, notificationService, 
 		}
 		else if (typeof(response.data) === "string" && response.data.indexOf("class=\"loginPage\"") >= 0) {
 			console.log("User has been logged out");
-			notificationService.notify($i18next.t("Logged out"), $i18next.t("You are logged out, and will be redirected to the login page.")).then(function() {
-				window.location = BASE_URL + "/dhis-web-dashboard-integration/index.action";
-			});
+			window.location = BASE_URL + "/dhis-web-dashboard-integration/index.action";
 			return false;
 		}
 		return true;
