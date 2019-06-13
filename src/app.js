@@ -51,17 +51,22 @@ import "./moduleAdmin/admin.js";
 import "./moduleReview/review.js";
 import "./moduleConsistency/consistencyAnalysis.js";
 import "./moduleOutlierGap/outlierAnalysis.js";
-import "./moduleAbout/about.js";
+
 import "./moduleExport/export.js";
+
+//import "./moduleAbout/About.jsx";
+import { react2angular } from "react2angular";
+import About from "./moduleAbout/About.jsx";
 
 //CSS
 import "./css/style.css";
 
 var app = angular.module("dataQualityApp",
 	["ngAnimate", "ngSanitize", "ngRoute", "ui.select", "jm.i18next", "dqAnalysis", "dashboard", "review",
-		"consistencyAnalysis", "outlierGapAnalysis", "about", "dataExport",
+		"consistencyAnalysis", "outlierGapAnalysis", "dataExport",
 		"admin", "appService", "appCommons"]);
 
+angular.module("dataQualityApp").component("about", react2angular(About));
 
 /**Bootstrap*/
 angular.element(document).ready(
@@ -129,9 +134,7 @@ app.config(["$routeProvider",
 
 			}).
 			when("/about", {
-				template: require("./moduleAbout/about.html"),
-				controller: "AboutController",
-				controllerAs: "aCtrl"
+				template: "<about />"
 			}).
 			when("/export", {
 				template: require("./moduleExport/export.html"),
