@@ -6,6 +6,8 @@
  immunities enjoyed by WHO under national or international law or submit to any national court jurisdiction.
  */
 
+import d2Utils from "../appCore/d2Utils";
+
 (function() {
 
 	var app = angular.module("appCommons");
@@ -25,8 +27,8 @@
 
 
 	app.controller("ouTreeController",
-		["d2Meta", "d2Utils",
-			function(d2Meta, d2Utils) {
+		["d2Meta",
+			function(d2Meta) {
 				var self = this;
 
 				function ouTreeInit() {

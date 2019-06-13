@@ -6,7 +6,9 @@
  immunities enjoyed by WHO under national or international law or submit to any national court jurisdiction.
  */
  
-export default function (requestService, periodService, d2Utils, $q) {
+import d2Utils from "./d2Utils";
+
+export default function (requestService, periodService, $q) {
 
 	//Define factory API
 	var service = {

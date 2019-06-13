@@ -6,12 +6,13 @@
  immunities enjoyed by WHO under national or international law or submit to any national court jurisdiction.
  */
 
+
 angular.module("dataExport", []);
 
 /**Controller: Parameters*/
 angular.module("dataExport").controller("ExportController",
-	["d2Meta", "d2Utils", "periodService", "BASE_URL",
-		function(d2Meta, d2Utils, periodService, BASE_URL) {
+	["d2Meta", "periodService", "BASE_URL",
+		function(d2Meta, periodService, BASE_URL) {
 
 			var self = this;
 

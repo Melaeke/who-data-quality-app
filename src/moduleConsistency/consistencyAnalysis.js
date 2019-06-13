@@ -8,6 +8,7 @@
 
 const moment = require("moment");
 
+
 angular.module("consistencyAnalysis", ["jm.i18next"]);
 
 angular.module("consistencyAnalysis").filter("startFrom", function() {
@@ -19,9 +20,9 @@ angular.module("consistencyAnalysis").filter("startFrom", function() {
 });
 
 angular.module("consistencyAnalysis").controller("ConsistencyAnalysisController",
-	["d2Meta", "d2Utils", "dqAnalysisConsistency", "periodService", "visualisationService", "mathService",
+	["d2Meta", "dqAnalysisConsistency", "periodService", "visualisationService", "mathService",
 		"$uibModal", "$timeout", "$i18next",
-		function(d2Meta, d2Utils, dqAnalysisConsistency, periodService, visualisationService, mathService, $uibModal, $timeout, $i18next) {
+		function(d2Meta, dqAnalysisConsistency, periodService, visualisationService, mathService, $uibModal, $timeout, $i18next) {
 			var self = this;
 
 			//Variables for storing result and result history

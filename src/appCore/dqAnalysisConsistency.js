@@ -6,7 +6,9 @@
  immunities enjoyed by WHO under national or international law or submit to any national court jurisdiction.
  */
 
-export default function (d2Data, d2Meta, d2Utils, mathService, $q) {
+import d2Utils from "../appCore/d2Utils";
+
+export default function (d2Data, d2Meta, mathService, $q) {
 
 	var service = {
 		analyse: analyse

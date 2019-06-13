@@ -5,6 +5,7 @@
  copied verbatim in the file “COPYING”.  In applying this license, WHO does not waive any of the privileges and
  immunities enjoyed by WHO under national or international law or submit to any national court jurisdiction.
  */
+import d2Utils from "../appCore/d2Utils";
 
 (function() {
 
@@ -26,8 +27,8 @@
 	});
 
 	app.controller("d2SelectDEController",
-		["d2Meta", "d2Map", "d2Utils", "$i18next", "$scope",
-			function(d2Meta, d2Map, d2Utils, $i18next, $scope) {
+		["d2Meta", "d2Map", "$i18next", "$scope",
+			function(d2Meta, d2Map, $i18next, $scope) {
 				var self = this;
 
 				self.groups = [];

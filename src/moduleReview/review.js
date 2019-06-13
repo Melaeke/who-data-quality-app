@@ -5,12 +5,13 @@
  copied verbatim in the file “COPYING”.  In applying this license, WHO does not waive any of the privileges and
  immunities enjoyed by WHO under national or international law or submit to any national court jurisdiction.
  */
+import d2Utils from "../appCore/d2Utils";
 
 angular.module("review", []);
 
 angular.module("review").controller("ReviewController",
-	["d2Meta","d2Map", "periodService", "dataAnalysisService", "visualisationService", "dqAnalysisConsistency", "dqAnalysisExternal", "dqAnalysisCompleteness", "$timeout", "d2Utils", "$i18next", "$scope",
-		function(d2Meta, d2Map, periodService, dataAnalysisService, visualisationService, dqAnalysisConsistency, dqAnalysisExternal, dqAnalysisCompleteness, $timeout, d2Utils, $i18next, $scope) {
+	["d2Meta","d2Map", "periodService", "dataAnalysisService", "visualisationService", "dqAnalysisConsistency", "dqAnalysisExternal", "dqAnalysisCompleteness", "$timeout", "$i18next", "$scope",
+		function(d2Meta, d2Map, periodService, dataAnalysisService, visualisationService, dqAnalysisConsistency, dqAnalysisExternal, dqAnalysisCompleteness, $timeout, $i18next, $scope) {
 
 			var self = this;
 

@@ -6,6 +6,8 @@
  immunities enjoyed by WHO under national or international law or submit to any national court jurisdiction.
  */
  
+import d2Utils from "../appCore/d2Utils";
+
 /**
  * This is used for Domain 1 - Completeness / Annual report
  * @param {*} d2Data 
@@ -15,7 +17,7 @@
  * @param {*} requestService 
  * @param {*} $q 
  */
-export default function (d2Data, d2Meta, d2Utils, mathService, requestService, $q) {
+export default function (d2Data, d2Meta, mathService, requestService, $q) {
 
 	
 

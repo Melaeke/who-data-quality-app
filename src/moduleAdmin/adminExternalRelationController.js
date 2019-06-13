@@ -5,12 +5,12 @@
  copied verbatim in the file “COPYING”.  In applying this license, WHO does not waive any of the privileges and
  immunities enjoyed by WHO under national or international law or submit to any national court jurisdiction.
  */
-
+import d2Utils from "../appCore/d2Utils";
 
 /**Controller: Parameters*/
 angular.module("admin").controller("ModalAddEditExternalRelationController",
-	["$uibModalInstance", "d2Meta", "d2Map", "d2Utils", "requestService", "externalRelation",
-		function($uibModalInstance, d2Meta, d2Map, d2Utils, requestService, externalRelation) {
+	["$uibModalInstance", "d2Meta", "d2Map", "requestService", "externalRelation",
+		function($uibModalInstance, d2Meta, d2Map, requestService, externalRelation) {
 
 
 			var self = this;

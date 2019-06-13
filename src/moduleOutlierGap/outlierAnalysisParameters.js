@@ -6,11 +6,13 @@
  immunities enjoyed by WHO under national or international law or submit to any national court jurisdiction.
  */
 
+import d2Utils from "../appCore/d2Utils";
+
 const moment = require("moment");
 
 angular.module("outlierGapAnalysis").controller("OutlierGapAnalysisController",
-	["d2Meta", "d2Utils", "d2Map", "periodService", "requestService", "dataAnalysisService",
-		function(d2Meta, d2Utils, d2Map, periodService, requestService, dataAnalysisService) {
+	["d2Meta", "d2Map", "periodService", "requestService", "dataAnalysisService",
+		function(d2Meta, d2Map, periodService, requestService, dataAnalysisService) {
 
 			var self = this;
 
