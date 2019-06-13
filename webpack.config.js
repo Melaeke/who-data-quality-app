@@ -14,7 +14,7 @@ try {
 	// Failed to load config file - use default config
 	console.warn('\nWARNING! Failed to load DHIS config:', e.message);
 	dhisConfig = {
-		baseUrl: 'http://localhost:8080/dhis',
+		baseUrl: 'http://localhost:8080/',
 		authorization: 'Basic YWRtaW46ZGlzdHJpY3Q=', // admin:district
 	};
 }
@@ -65,6 +65,13 @@ const webpackConfig = {
 			{
 				test: /\.(ttf|otf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?|(jpg|gif)$/,
 				use: { loader: "file-loader" }
+			},
+			{
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				use: {
+				  loader: "babel-loader"
+				}
 			}
 		]
 	},
@@ -73,18 +80,18 @@ const webpackConfig = {
 	},
 	externals: [
 		{
-			react: 'var React',
+			/*react: 'var React',
 			'react-dom': 'var ReactDOM',
 			'react-addons-transition-group': 'var React.addons.TransitionGroup',
 			'react-addons-create-fragment': 'var React.addons.createFragment',
 			'react-addons-update': 'var React.addons.update',
 			'react-addons-pure-render-mixin': 'var React.addons.PureRenderMixin',
-			'react-addons-shallow-compare': 'var React.addons.ShallowCompare',
+			'react-addons-shallow-compare': 'var React.addons.ShallowCompare',*/
 			rx: 'var Rx',
 			lodash: 'var _',
 		},
-		/^react-addons/,
-		/^react-dom$/,
+		/*/^react-addons/,
+		/^react-dom$/,*/
 		/^rx$/,],
 	plugins: [
 		new HTMLWebpackPlugin({

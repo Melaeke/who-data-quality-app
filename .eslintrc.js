@@ -5,6 +5,7 @@ module.exports = {
 	},
     "extends": "eslint:recommended",
     "parserOptions": {
+		"ecmaVersion": 2017,
 		"sourceType": "module",
 		"ecmaFeatures": {
 			"experimentalObjectRestSpread": true
@@ -27,7 +28,8 @@ module.exports = {
 			"error",
 			"always"
 		],
-		"no-console": "off"
+		"no-console": "off",
+		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
 	},
 	"globals": {
 		"angular": true,

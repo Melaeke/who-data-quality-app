@@ -4,6 +4,7 @@
   "description": "WHO Data Quality Tool for DHIS2",
   "main": "./src/app.js",
   "dependencies": {
+    "@babel/runtime": "^7.4.5",
     "angular": "1.5.5",
     "angular-animate": "1.5.5",
     "angular-bootstrap-nav-tree": "0.2.1",
@@ -20,13 +21,19 @@
     "moment": "^2.19.3",
     "ng-i18next": "^1.0.5",
     "nvd3": "^1.8.6",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react2angular": "^4.0.6",
     "regression": "^2.0.0",
     "ui-select": "^0.19.8"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/preset-env": "^7.1.0",
-    "babel-loader": "^8.0.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-async-generator-functions": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^0.28.7",
     "d2-manifest": "^1.0.0",
@@ -35,17 +42,17 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "i18next-conv": "^4.1.0",
+    "pify": "^4.0.1",
     "recursive-readdir": "^2.2.1",
+    "regenerate": "^1.4.0",
+    "regjsgen": "^0.5.0",
+    "regjsparser": "^0.4.0",
     "require": "^2.4.20",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9",
-    "regenerate": "^1.4.0",
-    "regjsgen": "^0.5.0",
-    "regjsparser": "^0.4.0",
-    "pify": "^4.0.1"
+    "webpack-dev-server": "^3.1.9"
   },
   "pre-commit": [
     "refresh-translations-template"

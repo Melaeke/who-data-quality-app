@@ -7,12 +7,19 @@ copied verbatim in the file “COPYING”.  In applying this license, WHO does n
 immunities enjoyed by WHO under national or international law or submit to any national court jurisdiction.
 */
 
+import {react2angular} from 'react2angular';
+
+import ChartLoadingPlaceholder from "./chartLoadingPlaceholder.jsx"
+
+
+
 (function(angular) {
 
 	angular.module("appCommons")
-		.directive("chartLoadingPlaceholder", () => ({
+		.component("chartLoadingPlaceholder", react2angular(ChartLoadingPlaceholder))
+		/*.directive("chartLoadingPlaceholder", () => ({
             restrict: "E",
             template: require("./chartLoadingPlaceholder.html")
-		}));
+		}));*/
 
 })(angular);
