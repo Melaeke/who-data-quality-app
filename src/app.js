@@ -61,6 +61,8 @@ import About from "./moduleAbout/About.jsx";
 //CSS
 import "./css/style.css";
 
+import { version } from "../package.json";
+
 var app = angular.module("dataQualityApp",
 	["ngAnimate", "ngSanitize", "ngRoute", "ui.select", "jm.i18next", "dqAnalysis", "dashboard", "review",
 		"consistencyAnalysis", "outlierGapAnalysis", "dataExport",
@@ -131,10 +133,12 @@ app.config(["$routeProvider",
 				template: require("./moduleReview/review.html"),
 				controller: "ReviewController",
 				controllerAs: "revCtrl"
-
 			}).
 			when("/about", {
-				template: "<about />"
+				template: "<about version='$resolve.version' />",
+				resolve: {
+					version: () => version
+				}
 			}).
 			when("/export", {
 				template: require("./moduleExport/export.html"),

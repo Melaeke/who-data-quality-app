@@ -21,6 +21,7 @@
     "moment": "^2.19.3",
     "ng-i18next": "^1.0.5",
     "nvd3": "^1.8.6",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react2angular": "^4.0.6",

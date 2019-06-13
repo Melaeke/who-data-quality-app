@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { version } from "../../package.json";
+import PropTypes from 'prop-types';
 
-export default () => (
+const AboutPage = ({version}) => (
     <>
         <h3>WHO Data Quality Tool</h3>
         <div style={{maxWidth: "800px"}}>
@@ -64,3 +64,9 @@ export default () => (
         </div>
     </>
 )
+
+AboutPage.propTypes = {
+    version: PropTypes.string.isRequired
+}
+
+export default AboutPage;
