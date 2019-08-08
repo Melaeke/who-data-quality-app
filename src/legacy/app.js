@@ -7,7 +7,7 @@
  */
 "use strict";
 
-const dhisDevConfig = DHIS_CONFIG; // eslint-disable-line
+
 
 import "jquery";
 import "angular";
@@ -55,6 +55,9 @@ import "./moduleOutlierGap/outlierAnalysis.js";
 import "./moduleExport/export.js";
 
 //import "./moduleAbout/About.jsx";
+import { combineReducers } from "redux";
+import ngRedux from "ng-redux";
+
 import { react2angular } from "react2angular";
 import About from "./moduleAbout/About.jsx";
 
@@ -63,10 +66,20 @@ import "./css/style.css";
 
 import { version } from "../package.json";
 
+
+
+require("dotenv").config();
+console.dir("Process env: " , process.env);
+
+
+const rootReducer = combineReducers({
+	
+})
+
 var app = angular.module("dataQualityApp",
 	["ngAnimate", "ngSanitize", "ngRoute", "ui.select", "jm.i18next", "dqAnalysis", "dashboard", "review",
 		"consistencyAnalysis", "outlierGapAnalysis", "dataExport",
-		"admin", "appService", "appCommons"]);
+		"admin", "appService", "appCommons", "ngRedux"]);
 
 angular.module("dataQualityApp").component("about", react2angular(About));
 
@@ -74,19 +87,14 @@ angular.module("dataQualityApp").component("about", react2angular(About));
 angular.element(document).ready(
 	function() {
 
-		fetch("manifest.webapp").then(
-			function(response) {
+		//Not production => rely on webpack-dev-server proxy
+		// eslint-disable-next-line no-undef
 
-				const json = response.json();
+		// eslint-disable-next-line no-undef
+		app.constant("BASE_URL", process.env.REACT_APP_DHIS2_BASE_URL);
+		app.constant("API_VERSION", "29");
+		angular.bootstrap(document, ["dataQualityApp"]);
 
-				//Not production => rely on webpack-dev-server proxy
-				// eslint-disable-next-line no-undef
-				const baseUrl = process.env.NODE_ENV === "production" ? json.activities.dhis.href : "";
-				app.constant("BASE_URL", baseUrl);
-				app.constant("API_VERSION", "29");
-				angular.bootstrap(document, ["dataQualityApp"]);
-			}
-		);
 
 		i18next
 			.init({
@@ -109,6 +117,12 @@ app.config(["uiSelectConfig", function(uiSelectConfig) {
 app.config(["$locationProvider", function($locationProvider) {
 	$locationProvider.hashPrefix("");
 }]);
+
+/*app.config(["$ngReduxProvider", ($ngReduxProvider) => {
+	$ngReduxProvider.createStoreWith(rootReducer, 
+		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	);
+}]);*/
 
 
 app.config(["$routeProvider",

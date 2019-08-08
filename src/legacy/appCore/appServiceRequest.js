@@ -73,8 +73,8 @@ export default function (BASE_URL, API_VERSION, $q) {
 			const response = await fetch(fullURL);
 
 			if ( response.ok ) {
-				const json = response.json();
-				deferred.resolve(json);
+				const json = await response.json();
+				deferred.resolve({data: json, status: response.status, config: {url: fullURL}});
 			} else {
 				deferred.reject(null);
 			}
@@ -94,8 +94,8 @@ export default function (BASE_URL, API_VERSION, $q) {
 		try {
 			const response = await fetch(encodeURI(requestURL));
 			if ( response.ok ) {
-				const json = response.json();
-				def.resolve(json);
+				const json = await response.json();
+				def.resolve({data: json, status: response.status, config: {url: requestURL}});
 			} else {
 				def.reject(null);
 			}
@@ -108,6 +108,7 @@ export default function (BASE_URL, API_VERSION, $q) {
 
 
 	self.post = async function (postURL, data) {
+
 		var fullURL = BASE_URL + "/api/" + API_VERSION + postURL;
 		fullURL = encodeURI(fullURL);
 

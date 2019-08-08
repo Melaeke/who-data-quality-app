@@ -1,45 +1,68 @@
-# WHO Data Quality Tool
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-[![Build Status](https://travis-ci.org/dhis2/data-quality-app-who.svg?branch=master)](https://travis-ci.org/dhis2/data-quality-app-who)
+## Available Scripts
 
-## License
-© Copyright 2017 the World Health Organization (WHO).
-This software is distributed under the terms of the GNU General Public License version 3 (GPL Version 3),
-copied verbatim in the file “COPYING”.  In applying this license, WHO does not waive any of the privileges and
-immunities enjoyed by WHO under national or international law or submit to any national court jurisdiction.
+In the project directory, you can run:
 
-## Getting started
+### `npm start`
 
-### Install dependencies
-To install app dependencies:
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-```
-npm install
-```
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-### Compile to zip
-To compile the app to a .zip file:
+### `npm test`
 
-```
-npm run zip
-```
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### Start dev server
-To start the webpack development server:
+### `npm run build`
 
-```
-npm start
-```
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-By default, webpack will start on port 8081, and assumes DHIS2 is running on 
-http://localhost:8080/dhis with `admin:district` as the user and password.
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-A different DHIS2 instance can be used to develop against by setting the `DHIS2_HOME`
-environmental variable (e.g. `export DHIS2_HOME=/Users/Olav/dhis2/dq_d2home`). 
-Inside the folder `DHIS2_HOME` points to, create a file `config` with the url 
-and base64-encoded username:password like this:
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-```
-exports.baseUrl = 'http://localhost:8090/dqdev';
-exports.authorization = 'Basic YWRtaW46ZGlzdHJpY3QK='; //Based64 encoded
-```
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

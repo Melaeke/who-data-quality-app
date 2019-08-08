@@ -15,8 +15,8 @@ angular.module("dashboard", ["d2", "dqAnalysis", "ui.bootstrap"]);
 
 //Define DashboardController
 angular.module("dashboard").controller("DashboardController",
-	["periodService", "visualisationService", "dataAnalysisService", "notificationService", "$q", "$scope", "d2Map", "d2Meta", "dqAnalysisConsistency", "$i18next",
-		function(periodService, visualisationService, dataAnalysisService, notificationService, $q, $scope, d2Map, d2Meta, dqAnalysisConsistency, $i18next) {
+	["periodService", "visualisationService", "dataAnalysisService", "notificationService", "$scope", "d2Map", "dqAnalysisConsistency", "$i18next",
+		function(periodService, visualisationService, dataAnalysisService, notificationService, $scope, d2Map, dqAnalysisConsistency, $i18next) {
 
 			var self = this;
 
