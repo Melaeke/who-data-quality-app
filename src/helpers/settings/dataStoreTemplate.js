@@ -1,4 +1,4 @@
-{
+export default {
 	"metaDataVersion": "1.1",
 	"coreIndicators": ["D1", "D3", "D27", "D5", "D8"],
 	"groups": [
