@@ -6,9 +6,13 @@
     "@dhis2/analytics": "^2.3.0",
     "@dhis2/app-runtime": "^1.4.0",
     "@dhis2/cli-style": "^4.1.1",
+    "@dhis2/d2-i18n": "^1.0.5",
+    "@dhis2/d2-i18n-extract": "^1.0.8",
+    "@dhis2/d2-i18n-generate": "^1.1.1",
     "@dhis2/ui-core": "^3.7.1",
     "@dhis2/ui-widgets": "^1.0.8",
     "d2": "^31.8.1",
+    "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
@@ -24,6 +28,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "d2-style js apply"
+    "format": "d2-style js apply",
+    "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
+    "localize": "yarn extract-pot && d2-i18n-generate -n NAMESPACE -p ./i18n/ -o ./src/locales/",
+    "lint:style": "d2-style js check --all",
+    "prestart": "yarn localize"
+
   }
 }

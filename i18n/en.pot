@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"POT-Creation-Date: 2019-08-13T11:53:49.470Z\n"
+"PO-Revision-Date: 2019-08-13T11:53:49.470Z\n"
+
+msgid "Select data element..."
+msgstr ""
+
+msgid "Loading..."
+msgstr ""
+
+msgid "No data elements in "
+msgstr ""
+
+msgid "[All data elements]"
+msgstr ""
+
+msgid "Select indicator..."
+msgstr ""
+
+msgid "No indicators in "
+msgstr ""
+
+msgid "[All indicators]"
+msgstr ""
+
+msgid "Select level..."
+msgstr ""
+
+msgid "Select group..."
+msgstr ""
+
+msgid "Jan"
+msgstr ""
+
+msgid "Feb"
+msgstr ""
+
+msgid "Mar"
+msgstr ""
+
+msgid "Apr"
+msgstr ""
+
+msgid "May"
+msgstr ""
+
+msgid "Jun"
+msgstr ""
+
+msgid "Jul"
+msgstr ""
+
+msgid "Aug"
+msgstr ""
+
+msgid "Sep"
+msgstr ""
+
+msgid "Oct"
+msgstr ""
+
+msgid "Nov"
+msgstr ""
+
+msgid "Dec"
+msgstr ""
+
+msgid "Jan-Jun"
+msgstr ""
+
+msgid "Jul-Dec"
+msgstr ""
+
+msgid "Weeks"
+msgstr ""
+
+msgid "Months"
+msgstr ""
+
+msgid "Quarters"
+msgstr ""
+
+msgid "Six-months"
+msgstr ""
+
+msgid "Years"
+msgstr ""
+
+msgid "Current = Average"
+msgstr ""
+
+msgid "Current = Forecast"
+msgstr ""
+
+msgid "Average of "
+msgstr ""
+
+msgid " previous periods"
+msgstr ""
+
+msgid "Forecasted value"
+msgstr ""
+
+msgid "Skipped due to missing data for "
+msgstr ""
+
+msgid "Dropout rate from "
+msgstr ""
+
+msgid " to "
+msgstr ""
+
+msgid "Ratio between "
+msgstr ""
+
+msgid " and "
+msgstr ""
+
+msgid "Ratio between the selected period and preceding periods."
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+msgid "Not possible to drill down, "
+msgstr ""
+
+msgid " has no children."
+msgstr ""
+
+msgid "Orgunit"
+msgstr ""
+
+msgid "Ratio"
+msgstr ""
+
+msgid "Dropout rate (%)"
+msgstr ""
+
+msgid " - average of "
+msgstr ""
+
+msgid " - forecast from "
+msgstr ""
+
+msgid "Weight"
+msgstr ""
+
+msgid "Completeness"
+msgstr ""
+
+msgid "Timeliness"
+msgstr ""
+
+msgid "Due to its size, the result was trimmed down to "
+msgstr ""
+
+msgid " rows. "
+msgstr ""
+
+msgid ""
+"Rows were prioritized based on total weight (significance of missing data "
+"and outliers), with rows with the lowest weight being left out of the "
+"result."
+msgstr ""
+
+msgid "Are you sure you want to leave this page? Any interpretations will be lost."
+msgstr ""
