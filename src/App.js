@@ -1,66 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
 
+import { CssReset } from '@dhis2/ui-core'
 import { HeaderBar } from '@dhis2/ui-widgets'
-import { Provider } from '@dhis2/app-runtime'
+import { Provider as DataProvider } from '@dhis2/app-runtime'
 
-import { setSettings } from './reducers/settings/actions'
+import styles from './App.module.css'
 
-import loadAppSettings from './helpers/settings'
-
-import AppRouter from './AppRouter'
-
-import { ScreenCover, CircularLoader } from '@dhis2/ui-core'
+import DataQualityTool from './DataQualityTool'
 
 import './App.css'
 
-const App = ({
-    url,
-    appName,
-    apiVersion,
-    loadAppSettings,
-    appSettingsLoading,
-}) => {
-    useEffect(() => {
-        loadAppSettings(url, apiVersion)
-    }, [loadAppSettings, url, apiVersion])
-
+const App = () => {
     return (
-        <>
-            <Provider config={{ baseUrl: url, apiVersion: apiVersion }}>
-                <HeaderBar appName={appName} />
-            </Provider>
-            {appSettingsLoading ? (
-                <AppRouter />
-            ) : (
-                <ScreenCover>
-                    <CircularLoader />
-                </ScreenCover>
-            )}
-        </>
+        <DataProvider
+            config={{
+                baseUrl: process.env.REACT_APP_DHIS2_BASE_URL,
+                apiVersion: '',
+            }}
+        >
+            <div className={styles.wrapper}>
+                <HeaderBar appName="WHO Data Quality Tool" />
+                <DataQualityTool />
+            </div>
+            <CssReset />
+        </DataProvider>
     )
 }
 
-const mapStateToProps = state => ({
-    appSettingsLoading: state.settings !== null,
-    appSettings: state.settings,
-})
-
-const mapDispatchToProps = dispatch => {
-    return {
-        loadAppSettings: (url, apiVersion) =>
-            dispatch(async dispatch => {
-                try {
-                    const json = await loadAppSettings(url, apiVersion)
-                    dispatch(setSettings(json))
-                } catch (err) {
-                    //TODO: handle error
-                }
-            }),
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(App)
+export default App
