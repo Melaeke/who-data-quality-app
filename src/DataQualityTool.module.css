@@ -1,0 +1,12 @@
+.appWrapper {
+    flex-direction: row;
+    display: flex;
+}
+.appContent {
+    flex-direction: column;
+    flex: 1;
+}
+.sidebarMenu {
+    width: 300px;
+    padding-right: 20px;
+}

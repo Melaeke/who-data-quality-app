@@ -2,9 +2,9 @@ import React from 'react'
 
 import { Menu, MenuItem, Divider } from '@dhis2/ui-core'
 
-const MenuComponent = () => {
+const MenuComponent = ({ className }) => {
     return (
-        <div className="menu-wrapper">
+        <div className={className}>
             <Menu>
                 <MenuItem label="Dashboard" />
                 <MenuItem label="Analysis" />
@@ -20,11 +20,6 @@ const MenuComponent = () => {
                     </Menu>
                 </MenuItem>
             </Menu>
-            <style jsx>{`
-                .menu-wrapper {
-                    max-width: 300px;
-                }
-            `}</style>
         </div>
     )
 }

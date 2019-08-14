@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import { CssReset } from '@dhis2/ui-core'
 import { HeaderBar } from '@dhis2/ui-widgets'
