@@ -58,9 +58,9 @@ import "./moduleExport/export.js";
 import "./css/style.css";
 
 var app = angular.module("dataQualityApp",
-	["ngAnimate", "ngSanitize", "ngRoute", "ui.select", "jm.i18next", "dqAnalysis", "dashboard", "review",
+	["ngAnimate", "ngRoute", "ui.select", "jm.i18next", "dqAnalysis", "dashboard", "review",
 		"consistencyAnalysis", "outlierGapAnalysis", "about", "dataExport",
-		"admin", "appService", "appCommons"]);
+		"admin", "appService", "appCommons", "ng"]);
 
 
 /**Bootstrap*/
@@ -76,7 +76,7 @@ angular.element(document).ready(
 				const baseUrl = process.env.NODE_ENV === "production" ?
 					response.data.activities.dhis.href : "";
 				app.constant("BASE_URL", baseUrl);
-				app.constant("API_VERSION", "27");
+				app.constant("API_VERSION", "30");
 				angular.bootstrap(document, ["dataQualityApp"]);
 			}
 		);

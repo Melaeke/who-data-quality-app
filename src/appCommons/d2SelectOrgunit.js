@@ -112,6 +112,9 @@
 							break;
 						}
 					}
+					if(!self.ngModel){
+						self.ngModel = {};
+					}
 					self.ngModel.level = self.selectedLevel;
 				}
 
