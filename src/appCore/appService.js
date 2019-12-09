@@ -10,7 +10,7 @@ import "angular";
 import dataAnalysis from "./appServiceDataAnalysis.js";
 import math from "./appServiceMath.js";
 import notification from "./appServiceNotification.js";
-import period from "./appServicePeriod.js";
+import period from "./appServicePeriodEthiopian.js";
 import request from "./appServiceRequest.js";
 import viz from "./appServiceVisualisation.js";
 

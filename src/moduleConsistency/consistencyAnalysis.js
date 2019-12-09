@@ -5,8 +5,17 @@
  copied verbatim in the file “COPYING”.  In applying this license, WHO does not waive any of the privileges and
  immunities enjoyed by WHO under national or international law or submit to any national court jurisdiction.
  */
+//The Ethiopan calendar requires jquery calendars.
+require("../libs/jquery.calendars.js")
 
-const moment = require("moment");
+//calendar.plus added to support different formats for Ethiopian date.
+require("../libs/jquery.calendars.plus.js")
+
+//jquery ethiopian calendar
+require("../libs/jquery.calendars.ethiopian.min.js")
+var EthiopianCalendar = new $.calendars.calendars.ethiopian
+
+
 
 angular.module("consistencyAnalysis", []);
 
@@ -19,9 +28,9 @@ angular.module("consistencyAnalysis").filter("startFrom", function() {
 });
 
 angular.module("consistencyAnalysis").controller("ConsistencyAnalysisController",
-	["d2Meta", "d2Utils", "dqAnalysisConsistency", "periodService", "visualisationService", "mathService",
+	["d2Meta", "d2Utils", "dqAnalysisConsistency", "periodService", "visualisationService", "mathService","$i18next",
 		"$uibModal", "$timeout",
-		function(d2Meta, d2Utils, dqAnalysisConsistency, periodService, visualisationService, mathService,
+		function(d2Meta, d2Utils, dqAnalysisConsistency, periodService, visualisationService, mathService,$i18next,
 				 $uibModal, $timeout) {
 			var self = this;
 
@@ -51,7 +60,7 @@ angular.module("consistencyAnalysis").controller("ConsistencyAnalysisController"
 				self.periodTypes = [];
 				self.periodTypes = periodService.getPeriodTypes();
 				self.filteredPeriodTypes = self.periodTypes;//TODO: temporary?
-				self.periodTypeSelected = self.periodTypes[4]; //Default yearly
+				self.periodTypeSelected = self.periodTypes[0]; //Default Monthly
 				self.currentPeriodType = self.periodTypes[1].id; //Default monthly
 
 				self.periodCountSelected = 3;
@@ -61,10 +70,10 @@ angular.module("consistencyAnalysis").controller("ConsistencyAnalysisController"
 
 				self.isoPeriods = [];
 
-				self.currentDate = new Date();
+				self.currentDate = EthiopianCalendar.newDate();
 				self.date = {
-					"startDate": moment().subtract(12, "months"),
-					"endDate": moment()
+					"startDate": EthiopianCalendar.newDate().add(-12, "m"),
+					"endDate": EthiopianCalendar.newDate()
 				};
 
 				self.getPeriodsInYear();
@@ -86,8 +95,8 @@ angular.module("consistencyAnalysis").controller("ConsistencyAnalysisController"
 			/** Periods */
 			self.getPeriodsInYear = function() {
 				self.periodsInYear = [];
-				var isoPeriods = periodService.getISOPeriods(self.yearSelected.name.toString() + "-01-01", self.yearSelected.name.toString() + "-12-31", self.periodTypeSelected.id);
-				for (var i = 0; i < isoPeriods.length; i++) {
+				var isoPeriods = periodService.getISOPeriods(self.yearSelected.name.toString() + "-01-01", self.yearSelected.name.toString() + "-12-30", self.periodTypeSelected.id);
+				for (var i = 0; i < isoPeriods.length; i++) { 
 					self.periodsInYear.push({
 						"id": isoPeriods[i],
 						"name": periodService.shortPeriodName(isoPeriods[i])
