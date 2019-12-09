@@ -8,6 +8,7 @@
 
 
 /**Controller: Parameters*/
+import {saveAs} from 'file-saver'
 angular.module("appCommons").controller("ModalExportController",
 	["$uibModalInstance", "fileContent", "fileName",
 		function($uibModalInstance, fileContent, fileName) {
