@@ -6,7 +6,15 @@
  immunities enjoyed by WHO under national or international law or submit to any national court jurisdiction.
  */
 
-const moment = require("moment");
+//The Ethiopan calendar requires jquery calendars.
+require("../libs/jquery.calendars.js")
+
+//calendar.plus added to support different formats for Ethiopian date.
+require("../libs/jquery.calendars.plus.js")
+
+//jquery ethiopian calendar
+require("../libs/jquery.calendars.ethiopian.min.js")
+var EthiopianCalendar = new $.calendars.calendars.ethiopian
 
 angular.module("outlierGapAnalysis").controller("OutlierGapAnalysisController",
 	["d2Meta", "d2Utils", "d2Map", "periodService", "requestService", "dataAnalysisService", "$scope",
@@ -50,10 +58,12 @@ angular.module("outlierGapAnalysis").controller("OutlierGapAnalysisController",
 
 				self.isoPeriods = [];
 
-				self.currentDate = new Date();
+				self.currentDate = EthiopianCalendar.newDate();
+				let startDate = EthiopianCalendar.newDate().add(-12,'m');
+
 				self.date = {
-					"startDate": moment().subtract(12, "months"),
-					"endDate": moment()
+					"startDate": startDate,
+					"endDate": self.currentDate
 				};
 
 				self.periodOption = "last";
@@ -70,12 +80,12 @@ angular.module("outlierGapAnalysis").controller("OutlierGapAnalysisController",
 				self.datepickerOptionsFrom = {
 					minMode: "month",
 					datepickerMode: "month",
-					maxDate: self.date.endDate.toDate()
+					maxDate: self.date.endDate
 				};
 				self.datepickerOptionsTo = {
 					minMode: "month",
 					datepickerMode: "month",
-					minDate: self.date.startDate.toDate(),
+					minDate: self.date.startDate,
 					maxDate: self.currentDate
 				};
 			}
@@ -90,33 +100,33 @@ angular.module("outlierGapAnalysis").controller("OutlierGapAnalysisController",
 
 				var startDate, endDate;
 				if (self.periodOption === "last") {
-					endDate = moment().format("YYYY-MM-DD");
+					endDate = EthiopianCalendar.newDate().formatDate('yyyy-mm-dd');
 					if (self.periodTypeSelected.id === "Weekly") {
-						startDate = moment().subtract(self.periodCountSelected.value, "weeks").format("YYYY-MM-DD");
+						startDate = EthiopianCalendar.newDate().add(-1*self.periodCountSelected.value,'w').formatDate('yyyy-mm-dd');
 					}
 					else if (self.periodTypeSelected.id === "Monthly") {
-						startDate = moment().subtract(self.periodCountSelected.value, "months").format("YYYY-MM-DD");
+						startDate = EthiopianCalendar.newDate().add(-1*self.periodCountSelected.value,'m').formatDate('yyyy-mm-dd');
 					}
 					else if (self.periodTypeSelected.id === "BiMonthly") {
-						startDate = moment().subtract(self.periodCountSelected.value * 2, "months").format("YYYY-MM-DD");
+						startDate = EthiopianCalendar.newDate().add(-2*self.periodCountSelected.value,'m').formatDate('yyyy-mm-dd');
 					}
 					else if (self.periodTypeSelected.id === "Quarterly") {
-						startDate = moment().subtract(self.periodCountSelected.value, "quarters").format("YYYY-MM-DD");
+						startDate = EthiopianCalendar.newDate().add(-3*self.periodCountSelected.value,'m').formatDate('yyyy-mm-dd');
 					}
-					else if (self.periodTypeSelected.id === "SixMonthly") {
-						startDate = moment().subtract(self.periodCountSelected.value * 2, "quarters").format("YYYY-MM-DD");
+					else if (self.periodTypeSelected.id === "SixMonthly"|| self.periodTypeSelected.id === "SixMonthlyApril" ||self.periodTypeSelected.id === "SixMonthlyNovember") {
+						startDate = EthiopianCalendar.newDate().add(-6*self.periodCountSelected.value,'m').formatDate('yyyy-mm-dd');
 					}
-					else if (self.periodTypeSelected.id === "Yearly") {
-						startDate = moment().subtract(self.periodCountSelected.value, "years").format("YYYY-MM-DD");
+					else if (self.periodTypeSelected.id === "Yearly"||self.periodTypeSelected.id === "FinancialOct"||self.periodTypeSelected.id === "FinancialJuly"||self.periodTypeSelected.id === "FinancialApril"||self.periodTypeSelected.id === "FinancialNov") {
+						startDate = EthiopianCalendar.newDate().add(-1*self.periodCountSelected.value,'y').formatDate('yyyy-mm-dd');
 					}
 				}
 				else if (self.periodOption === "year") {
 
-					if (self.yearSelected.name === moment().format("YYYY")) {
-						endDate = moment().format("YYYY-MM-DD");
+					if (self.yearSelected.name === EthiopianCalendar.newDate().formatDate("yyyy")) {
+						endDate = EthiopianCalendar.newDate().formatDate("yyyy-mm-dd");
 					}
 					else {
-						endDate = self.yearSelected.id + "-12-31";
+						endDate = self.yearSelected.id + "-12-30";
 					}
 
 					startDate = self.yearSelected.id + "-01-01";
