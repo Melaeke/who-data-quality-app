@@ -29,13 +29,13 @@ app.filter("startFrom", function() {
 });
 
 app.controller("OutlierResultController",
-	["periodService", "mathService", "dataAnalysisService", "requestService", "visualisationService", "$i18next", "$uibModal",
-		function(periodService, mathService, dataAnalysisService, requestService, visualisationService, $i18next, $uibModal) {
+	["periodService", "mathService", "dataAnalysisService", "requestService", "visualisationService", "$i18next", "$uibModal","$rootScope",
+		function(periodService, mathService, dataAnalysisService, requestService, visualisationService, $i18next, $uibModal,$rootScope) {
 			var self = this;
 
 			//"API" for sending result
 			self.results = [];
-			self.resultControl.receiveResult = receiveResult;
+			$rootScope.resultControl.receiveResult = receiveResult;
 
 			function receiveResult(result) {
 

@@ -17,8 +17,8 @@ require("../libs/jquery.calendars.ethiopian.min.js")
 var EthiopianCalendar = new $.calendars.calendars.ethiopian
 
 angular.module("outlierGapAnalysis").controller("OutlierGapAnalysisController",
-	["d2Meta", "d2Utils", "d2Map", "periodService", "requestService", "dataAnalysisService", "$scope",
-		function(d2Meta, d2Utils, d2Map, periodService, requestService, dataAnalysisService, $scope) {
+	["d2Meta", "d2Utils", "d2Map", "periodService", "requestService", "dataAnalysisService", "$scope","$rootScope",
+		function(d2Meta, d2Utils, d2Map, periodService, requestService, dataAnalysisService, $scope,$rootScope) {
 
 			var self = this;
 
@@ -181,9 +181,10 @@ angular.module("outlierGapAnalysis").controller("OutlierGapAnalysisController",
 			/** UTILITIES */
 
 			//Directive will add its function here:
-			self.resultControl = {};
+			$rootScope.resultControl = {};
 			function receiveResult(result) {
-				self.resultControl.receiveResult(result);
+				$rootScope.resultControl.receiveResult(result);
+				self.loading=false;
 			}
 
 			return self;
